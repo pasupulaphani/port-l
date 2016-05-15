@@ -45,8 +45,8 @@
         "name": "websocket.xdk"
       },
       "websocket.xdke": {
-        "previousModTime": 1463259372000,
-        "modified": 1463259372000,
+        "previousModTime": 1463300844000,
+        "modified": 1463300844000,
         "seen": true,
         "name": "websocket.xdke"
       },
@@ -81,10 +81,6 @@
         "name": "xdk/project-info.json"
       }
     },
-    "boardFileStatus": {
-      "main.js": {
-        "previousModTime": 1463300844201
-      }
-    }
+    "boardFileStatus": {}
   }
 }

@@ -42,12 +42,8 @@ var userId;
 
 app.get('/', function(req, res) {
     //Join all arguments together and normalize the resulting path.
-    res.sendFile(path.join(__dirname + '/client', 'index.html'));
+    res.sendStatus(200);
 });
-
-//Allow use of files in client folder
-app.use(express.static(__dirname + '/client'));
-app.use('/client', express.static(__dirname + '/client'));
 
 
 
@@ -57,16 +53,16 @@ var subscriber_pin = new mraa.Gpio(1);
     subscriber_pin.isr(mraa.EDGE_RISING, subscriberEvent); //Subscribe to interrupt notifications from Arduino
     
 function subscriberEvent() {
-    var contents = fs.readFileSync('/arduino_notification_out.txt').toString();
-    console.log("Message from Arduino:" + contents);        
+//    var contents = fs.readFileSync('/arduino_notification_out.txt').toString();
+//    console.log("Message from Arduino:" + contents);        
 }
 
 
 // websocket event handles
-var io = require('socket.io')();
+var io = require('socket.io');
 var url = "http://172.16.40.213:3000"
-var socket = io(url);
-	socket.on('chat message', function (data) {
+var socket = require('socket.io-client')(url);
+socket.on('chat message', function (data) {
 	console.log(data);
 });
 
