@@ -35,7 +35,6 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
 var fs = require('fs');
 
 var connectedUsersArray = [];
@@ -63,13 +62,14 @@ function subscriberEvent() {
 }
 
 
-
 // websocket event handles
-var socket = require('socket.io-client')('http://172.16.40.213:3000');
-socket.on('connect', function(){});
-socket.on('event', function(data){});
-socket.on('disconnect', function(){});
-socket.compress(false).emit('an event', { some: 'data' });
+var io = require('socket.io')();
+var url = "http://172.16.40.213:3000"
+var socket = io(url);
+	socket.on('chat message', function (data) {
+	console.log(data);
+});
+
 
 http.listen(3000, function(){
     console.log('Web server Active listening on *:3000');
