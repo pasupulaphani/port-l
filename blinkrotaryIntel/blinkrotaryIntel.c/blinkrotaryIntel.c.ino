@@ -40,7 +40,7 @@ void loop() {
 void publishData(int angle)
 {
   fromarduino = fopen ("/arduino_notification_out.txt", "w+");
-  fprintf(fromarduino, "[%d]", angle);
+  fprintf(fromarduino, "%d", angle);
   fclose(fromarduino);  
 }
 

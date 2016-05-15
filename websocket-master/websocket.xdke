@@ -27,8 +27,8 @@
         "name": "icon.png"
       },
       "main.js": {
-        "previousModTime": 1463300840000,
-        "modified": 1463300840000,
+        "previousModTime": 1463312038000,
+        "modified": 1463312038000,
         "seen": true,
         "name": "main.js"
       },
@@ -45,8 +45,8 @@
         "name": "websocket.xdk"
       },
       "websocket.xdke": {
-        "previousModTime": 1463300844000,
-        "modified": 1463300844000,
+        "previousModTime": 1463311998000,
+        "modified": 1463311998000,
         "seen": true,
         "name": "websocket.xdke"
       },
@@ -81,6 +81,10 @@
         "name": "xdk/project-info.json"
       }
     },
-    "boardFileStatus": {}
+    "boardFileStatus": {
+      "main.js": {
+        "previousModTime": 1463312042967
+      }
+    }
   }
 }

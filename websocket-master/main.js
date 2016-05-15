@@ -59,7 +59,8 @@ var subscriber_pin = new mraa.Gpio(1);
     
 function subscriberEvent() {
     var contents = fs.readFileSync('/arduino_notification_out.txt').toString();
-    console.log("Message from Arduino:" + contents);        
+    console.log("Message from Arduino:" + contents);      
+    io.emit('value', contents);
 }
 
 
@@ -92,6 +93,7 @@ io.on('connection', function(socket) {
         console.log('message: ' + msg.value);
     });
     
+
     socket.on('toogle led', function(msg) {
         myOnboardLed.write(ledState?1:0); //if ledState is true then write a '1' (high) otherwise write a '0' (low)
         msg.value = ledState;

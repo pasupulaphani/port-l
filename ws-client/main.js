@@ -53,17 +53,32 @@ var subscriber_pin = new mraa.Gpio(1);
     subscriber_pin.isr(mraa.EDGE_RISING, subscriberEvent); //Subscribe to interrupt notifications from Arduino
     
 function subscriberEvent() {
-//    var contents = fs.readFileSync('/arduino_notification_out.txt').toString();
-//    console.log("Message from Arduino:" + contents);        
+//   var contents = fs.readFileSync('/arduino_notification_out.txt').toString();
+//   console.log("Message from Arduino:" + contents);        
 }
 
+
+var notifier_pin = new mraa.Gpio(5);
+notifier_pin.dir(mraa.DIR_OUT);
+
+
+
+function notifyWorld()
+{
+    notifier_pin.write(1);
+    setTimeout(function(){
+        notifier_pin.write(0);
+    },200);
+}
 
 // websocket event handles
 var io = require('socket.io');
 var url = "http://172.16.40.213:3000"
 var socket = require('socket.io-client')(url);
-socket.on('chat message', function (data) {
+socket.on('value', function (data) {
 	console.log(data);
+	fs.writeFileSync("/js_notification_out.txt", data + "\n");
+	notifyWorld();
 });
 
 
